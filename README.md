@@ -6,7 +6,10 @@
 ```markdown
 # 🥃 Bob - The Spirit Guide (n8n Agent)
 
-Bob is an AI agent designed to analyze a user's "bar" within the BAXUS ecosystem and recommend personalized spirits based on their tastes, preferences, and pricing history. It was built using [n8n](https://n8n.io/) and runs via Docker.
+Bob is an AI agent designed to analyze a user's "bar" within the
+BAXUS ecosystem and recommend personalized spirits based on their tastes,
+preferences, and pricing history. It was built using [n8n](https://n8n.io/)
+and runs via Docker.
 
 ## 🚀 How to Run the Project Locally
 

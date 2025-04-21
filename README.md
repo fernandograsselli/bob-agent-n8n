@@ -1,7 +1,7 @@
 
 ---
 
-### 🇺🇸 English Version
+### README
 
 ```markdown
 # 🥃 Bob - The Spirit Guide (n8n Agent)

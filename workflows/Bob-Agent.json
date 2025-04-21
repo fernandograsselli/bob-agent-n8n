@@ -1,0 +1,700 @@
+{
+  "name": "Area de Testes 2",
+  "nodes": [
+    {
+      "parameters": {
+        "model": "llama-3.3-70b-versatile",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGroq",
+      "typeVersion": 1,
+      "position": [
+        1100,
+        0
+      ],
+      "id": "cf484cd8-71d6-45cb-8ea7-f824f067c7a0",
+      "name": "Groq Chat Model",
+      "credentials": {
+        "groqApi": {
+          "id": "1g3aOChllVuozaB3",
+          "name": "Groq account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "aggregate": "aggregateAllItemData",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.aggregate",
+      "typeVersion": 1,
+      "position": [
+        980,
+        -220
+      ],
+      "id": "73a0d4f0-8554-4fb9-94e2-1bc04899981c",
+      "name": "Aggregate"
+    },
+    {
+      "parameters": {
+        "schemaType": "manual",
+        "inputSchema": "[\n  {\n    \"suggestion\": \"beverage_type\",\n    \"alibi\": \"Description of the reason for the recommendation and details about the suggested beverage.\"\n  },\n  {\n    \"suggestion\": \"beverage_type\",\n    \"alibi\": \"Description of the reason for the recommendation and details about the suggested beverage.\"\n  },\n  {\n    \"suggestion\": \"beverage_type\",\n    \"alibi\": \"Description of the reason for the recommendation and details about the suggested beverage.\"\n  },\n  {\n    \"suggestion\": \"beverage_type\",\n    \"alibi\": \"Description of the reason for the recommendation and details about the suggested beverage.\"\n  },\n  {\n    \"newSuggestion\": {\n      \"suggestion\": \"beverage_type\",\n      \"alibi\": \"Description of the reason why this recommendation is being made.\"\n    }\n  }\n]"
+      },
+      "type": "@n8n/n8n-nodes-langchain.outputParserStructured",
+      "typeVersion": 1.2,
+      "position": [
+        1460,
+        0
+      ],
+      "id": "19044cd5-91a7-432f-baea-13101afb1876",
+      "name": "Structured Output Parser"
+    },
+    {
+      "parameters": {
+        "model": "llama-3.3-70b-versatile",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGroq",
+      "typeVersion": 1,
+      "position": [
+        1060,
+        -400
+      ],
+      "id": "b28edfac-d762-4392-bc59-701e669571a1",
+      "name": "Groq Chat Model1",
+      "credentials": {
+        "groqApi": {
+          "id": "1g3aOChllVuozaB3",
+          "name": "Groq account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "schemaType": "manual",
+        "inputSchema": "[\n  {\n    \"description\": \"A smooth, mild, and flavorful gin.\",\n    \"interestingFacts\": \"Aged for 200 years under a camel's butt.\"\n  },\n  {\n    \"description\": \"A Scottish whisky with woody notes and a smoky finish.\",\n    \"interestingFacts\": \"Produced using spring water from a remote Highland source accessible only by horseback.\"\n  }\n]"
+      },
+      "type": "@n8n/n8n-nodes-langchain.outputParserStructured",
+      "typeVersion": 1.2,
+      "position": [
+        1440,
+        -440
+      ],
+      "id": "edf237b3-b148-461a-8d71-9c480bf0b623",
+      "name": "Structured Output Parser1"
+    },
+    {
+      "parameters": {
+        "sessionIdType": "customKey",
+        "sessionKey": "bob"
+      },
+      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+      "typeVersion": 1.3,
+      "position": [
+        1280,
+        -440
+      ],
+      "id": "df6a56b3-eb67-466c-9e3a-98c4cd2daab9",
+      "name": "Simple Memory"
+    },
+    {
+      "parameters": {
+        "model": "llama-3.3-70b-versatile",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGroq",
+      "typeVersion": 1,
+      "position": [
+        1120,
+        420
+      ],
+      "id": "f47bb652-41a1-45fd-8fc3-fd3cb308ca4a",
+      "name": "Groq Chat Model2",
+      "credentials": {
+        "groqApi": {
+          "id": "1g3aOChllVuozaB3",
+          "name": "Groq account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "schemaType": "manual",
+        "inputSchema": "{\n  \"usualRange\": \"minPrice | maxPrice\",\n  \"premiumRange\":\"premiumRange\",\n  \"idealRecommendation\":\"price\"\n}"
+      },
+      "type": "@n8n/n8n-nodes-langchain.outputParserStructured",
+      "typeVersion": 1.2,
+      "position": [
+        1480,
+        420
+      ],
+      "id": "a7415868-bacd-416a-bbe9-b8d1e3c388b1",
+      "name": "Structured Output Parser2"
+    },
+    {
+      "parameters": {
+        "multipleMethods": true,
+        "path": "home",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        -80,
+        -440
+      ],
+      "id": "4b542de6-9a32-44db-b3f4-5e8ad4f4ecb4",
+      "name": "GET_POST_HOME",
+      "webhookId": "e561724e-709d-47a6-9540-a33c974efe80"
+    },
+    {
+      "parameters": {
+        "html": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n  <title> Agent Bob</title>\n  <meta charset=\"utf-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n  <link href=\"https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css\" rel=\"stylesheet\">\n  <script src=\"https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js\"></script>\n</head>\n<body>\n\n<div class=\"container-fluid p-5 bg-primary text-white text-center\">\n  <h1> Bob, the Spirit Guide</h1>\n  <p>About Bob\nThey say knowledge is power — and when it comes to spirits, Bob knows it all. <br>\n    Trained in the subtle nuances of flavor, region, and preference, <br>\n    Bob, the Spirit Guide, navigates the world of distilled drinks with intuition and precision.<br>\n    Simply offer a name, and Bob will unlock a realm of curated recommendations tailored to one’s deepest cravings.</p> \n</div>\n\n  <!-- Modal -->\n<div class=\"modal fade\" id=\"staticBackdrop\" data-bs-backdrop=\"static\" data-bs-keyboard=\"false\" tabindex=\"-1\" aria-labelledby=\"staticBackdropLabel\" aria-hidden=\"true\">\n  <div class=\"modal-dialog\">\n    <div class=\"modal-content\">\n      <div class=\"modal-header\">\n        <h1 class=\"modal-title fs-5\" id=\"staticBackdropLabel\">Modal title</h1>\n        <button type=\"button\" class=\"btn-close\" data-bs-dismiss=\"modal\" aria-label=\"Close\"></button>\n      </div>\n      <div class=\"modal-body\" id=\"modalBody\">\n          \"Hang tight! Bob is fetching your drink data...\"\n      </div>\n      <div class=\"modal-footer\">\n        <button type=\"button\" class=\"btn btn-secondary\" data-bs-dismiss=\"modal\">Close</button>\n      </div>\n    </div>\n  </div>\n</div>\n\n  \n<div class=\"container mt-5\">\n  <div class=\"row\">\n    <div class=\"col-sm-4\">\n\n      <div class=\"row\">\n        <div class=\"col-sm-3\">\n          <h3>Client:</h3>\n        </div>\n        <div class=\"col-sm-9\">\n          <h5 id=\"nameCliente\"></h5>\n        </div>  \n      </div>\n      \n<!--      <form action=\"home\" method=\"POST\"> -->\n      <label for=\"user\">Name</label>\n      <input type=\"text\" id=\"user\" name=\"user\" value=\"carriebaxus\" required>\n      <button type=\"submit\" id=\"btn_enviar\">Analisar</button>\n<!--      </form> -->\n\n      <div class=\"row\"><div class=\"row\" id=\"htmlError\"></div></div>\n      \n      <div class=\"row\">\n        <div class=\"row\" id=\"sugestion1\">\n          \n        </div>\n        <div class=\"row\" id=\"sugestion2\">\n          \n        </div>\n      </div>\n    </div><!--end col-sm-4 -->\n\n    <div class=\"col-sm-8\" id=\"htmlArea\">\n      \n    </div>\n  </div>\n</div>\n\n\n\n\n<script>\n  document.getElementById('btn_enviar').addEventListener('click', async () => {\n    const user = document.getElementById('user').value;\n    document.getElementById('user').value = \"\";\n    document.getElementById('nameCliente').textContent = user;\n    const btnSend = document.getElementById('btn_enviar');\n    \n    const htmlError = document.getElementById('htmlError');\n    const htmlArea = document.getElementById('htmlArea');\n    const sugestion1 = document.getElementById('sugestion1');\n    const sugestion2 = document.getElementById('sugestion2');\n\n    //altera propriedades dos elementos\n    btnSend.disabled = true;\n    htmlArea.textContent = \"\";\n    sugestion1.textContent = \"\";\n    sugestion2.textContent = \"\";\n    htmlError.textContent = \"wait...\";\n    \n    try{\n        const response = await fetch('',{\n            method: 'POST',\n            headers:{'Content-Type':'application/json'},\n            body: JSON.stringify({user})\n        });\n\n        const result = await response.json();\n\n        if(result){\n            htmlArea.innerHTML = result.listProduct;\n            sugestion1.innerHTML = result.s1;\n            sugestion2.innerHTML = result.s2;\n            htmlError.textContent = \"\";\n        }else{\n            htmlError.textContent = \"Erro ao tentar retornar os dados, por favor tente novamente.\";\n        }\n        \n    }catch(error){\n        htmlError.textContent = \"Erro ao tentar enviar dados, por favor verifique os dados e tente novamente.\";\n    }finally{\n        //organiza e deixa tudo pronto para a proxima pesquisa\n      btnSend.disabled = false;\n      user = \"\";\n    }\n});//final eventListener btn_enviar\n\n\n  //inicio eventListener askBob\n  document.getElementById('htmlArea').addEventListener('click', async (e) => {\n    const prod = e.target.name;\n    const myModal = new bootstrap.Modal(document.getElementById('staticBackdrop'));\n    myModal.show();\n    document.getElementById('staticBackdropLabel').textContent = e.target.name;\n    document.getElementById('modalBody').innerHTML = \"Hang tight! Bob is fetching your drink data...\";\n\n    try{\n        const response = await fetch('bob',{\n            method: 'POST',\n            headers:{'Content-Type':'application/json'},\n            body: JSON.stringify({prod})\n        });\n\n        const result = await response.json();\n\n        if(result){\n            document.getElementById('modalBody').innerHTML = \n              \"<p><b>Description:</b></p><p>\" + result.descProduct + \"</p>\";\n          document.getElementById('modalBody').innerHTML += \n              \"<p><b>Info:</b></p><p>\" + result.interestingFacts + \"</p>\";\n          \n        }else{\n            htmlError.textContent = \"Erro ao tentar analizar dados\";\n        }\n        \n    }catch(error){\n        htmlError.textContent = \"Erro ao tentar enviar dados!\";\n    }finally{\n        //organiza e deixa tudo pronto para a proxima pesquisa\n      btnSend.disabled = false;\n    }\n\n});\n</script>\n\n</body>\n</html>\n\n\n<style>\n.img{\n  style=\"object-fit:cover;\n  object-position: right;\n  width:200px;\n  height:300px;\n  border: solid 1px #CCC\"\n}\n</style>\n"
+      },
+      "type": "n8n-nodes-base.html",
+      "typeVersion": 1.2,
+      "position": [
+        200,
+        -520
+      ],
+      "id": "b743de6d-b284-4207-81d2-ae309c9c92ff",
+      "name": "Home",
+      "alwaysOutputData": false
+    },
+    {
+      "parameters": {
+        "respondWith": "text",
+        "responseBody": "={{ $json.html }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [
+        440,
+        -520
+      ],
+      "id": "7b5e77b8-6703-478c-bc47-8fe55ea3ee5c",
+      "name": "Return HTML"
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "https://docs.google.com/spreadsheets/d/1yXIJo5f00clyrFHlRyKuIwrNCQw_cNcoVbSvtKO_bTs/edit?gid=0#gid=0",
+          "mode": "url"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "Sheet1",
+          "mode": "name"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        200,
+        -300
+      ],
+      "id": "ae842ab5-f54f-4ed6-a2ec-483faed85abe",
+      "name": "BD",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "bR7hocQqL101INVy",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "url": "=https://services.baxus.co/api/bar/user/{{ $json.body.user }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        200,
+        -120
+      ],
+      "id": "be3868dc-3fca-46be-98be-4d48234d44bb",
+      "name": "End_Point_Client"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Loop over input items and add a new field called 'myNewField' to the JSON of each one\n\nvar objFinal = new Object();\nvar spirit = new Array();\n\nfor (const item of $input.all()) {\n  var obj = new Object();\n  if(!spirit.includes(item.json.spirit_type)){\n    spirit.push(item.json.spirit_type); \n  }\n}\n\nobjFinal.tipo = spirit;\nreturn objFinal;"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        440,
+        -300
+      ],
+      "id": "b51154f0-d613-40aa-b0f4-d7efb1b9608e",
+      "name": "Cria lista de Tipos (Spirits)"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Loop over input items and add a new field called 'myNewField' to the JSON of each one\n\n\nvar objFinal = new Object();\n\nvar data = new Array();\nvar price = new Array();\n\n\nfor (const item of $input.all()) {\n  if(!data.includes(item.json.product.spirit)){\n    data.push(item.json.product.spirit);\n    price.push(item.json.product.shelf_price);\n  }\n  \n}\n\nobjFinal.tipo = data;\nobjFinal.price = price;\nreturn objFinal;"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        440,
+        -120
+      ],
+      "id": "cb1cb33b-a3e7-4a2a-8f4c-a9f09588b0f5",
+      "name": "cria uma lista de tipos (spirits) do cliente"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3,
+      "position": [
+        740,
+        -220
+      ],
+      "id": "b1c53f24-3799-4464-b579-93998e80bece",
+      "name": "unifica as 2 listas de tipos (DB e Cliente",
+      "alwaysOutputData": true
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "bring me suggestions",
+        "hasOutputParser": true,
+        "options": {
+          "systemMessage": "=<agent>\n  <agentName>Bob</agentName>\n  <agentAbout>\nAbout Bob\nBob is an AI-driven recommendation engine focused exclusively on distilled spirits. He parses wish lists, interprets patterns, and maps client preferences to a refined selection of beverages. Whether it’s a peat-forward Scotch or a smooth aged rum, Bob delivers suggestions backed by both data and taste.\n  </agentAbout>\n</agent>\n\n<objective>\nIdentify beverage types from the wish list, map them to available categories, and recommend a similar or complementary option.  \nAdditionally, suggest a less conventional beverage type that still aligns with the client's preferences and could offer a surprising experience.\n</objective>\n\n<listTipoBebida>\n{{ $json.data[0].tipo }}\n</istTipoBebida>\n\n<listCliente>\n{{ $json.data[1].tipo }}\n</listCliente>\n\n\n<Output>\nThe output must be an object containing the suggestion types and the reason for each suggestion, as shown in the example '<exOutput>'.\n</Output>\n\n<exOutput>\n[\n  {\n    \"suggestion\": \"beverage_type\",\n    \"alibi\": \"Description of the reason for the recommendation and details about the suggested beverage.\"\n  },\n  {\n    \"suggestion\": \"beverage_type\",\n    \"alibi\": \"Description of the reason for the recommendation and details about the suggested beverage.\"\n  },\n  {\n    \"newSuggestion\": {\n      \"suggestion\": \"beverage_type\",\n      \"alibi\": \"Description of the reason for the recommendation and details about the suggested beverage.\"\n    }\n  }\n]\n</exOutput>"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 1.8,
+      "position": [
+        1220,
+        -220
+      ],
+      "id": "629e2bad-c900-4c12-9e75-7599d9a96057",
+      "name": "Bob Agent Classifica Tipos (spirits)",
+      "alwaysOutputData": true
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "// Loop over input items and add a new field called 'myNewField' to the JSON of each one\n\n\nvar objFinal = new Object();\n\nvar sugestao = new Array();\nvar novaSugestao = new Array();\n\n\nfor (const item of $json.output) {\n  \n  if(item.suggestion != null && item.suggestion != \"\"){\n    sugestao.push({\"tipo\":item.suggestion, \"motivo\":item.alibi});  \n  }\n  \n  if(item.newSuggestion){\n    novaSugestao.push({\"tipo\":item.newSuggestion.suggestion, \"motivo\":item.newSuggestion.alibi});\n  }\n  \n}\n\nobjFinal.sugestao = sugestao;\nobjFinal.novo = novaSugestao;\nreturn objFinal;"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1600,
+        -220
+      ],
+      "id": "a4ceeb7e-133e-4e11-93d4-ef53de547a45",
+      "name": "Cria Lista de Sugestoes"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3,
+      "position": [
+        1860,
+        -280
+      ],
+      "id": "5b0f1e9f-a372-4f12-bd9d-529d7aa1bfcc",
+      "name": "Junta os dados de Bob (sugestao) com o DB",
+      "alwaysOutputData": true
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "Analyze the data",
+        "hasOutputParser": true,
+        "options": {
+          "systemMessage": "=<Objective>\nAnalyze the list of prices to identify the customer's typical spending behavior. Consider the following:\n- Frequent purchases reflect the habitual price range.\n- Significantly higher prices should be treated as exceptions, indicating special occasions.\n- The average price should reflect the predominant behavior and should not be skewed by occasional high-value purchases.\n- Avoid using a simple arithmetic mean if it's distorted by outliers.\n\nBased on this, determine:\n1. 'usualRange'The customer’s typical price range, calculated from frequent purchases and excluding outliers.\n2. 'premiumRange' A price range for occasional high-value purchases, if any.\n3. 'idealRecommendation' An ideal recommendation price based on the usual range.\n4. 'Output' return only a objetc\n</Objective>\n\n<inputData>\n{{ $json.price }}\n</inputData>\n\n<Output>\n{\n  \"usualRange\": \"minPrice | maxPrice\",\n  \"premiumRange\":\"premiumRange\",\n  \"idealRecommendation\":\"idealRecommendation\"\n}\n</Output>\n"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 1.8,
+      "position": [
+        1240,
+        200
+      ],
+      "id": "7c9465bf-ff85-4064-86ed-3fee194c4f1b",
+      "name": "Bob agent analisador de valores",
+      "alwaysOutputData": true
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "bring me descrition",
+        "hasOutputParser": true,
+        "options": {
+          "systemMessage": "=<agent>\n  <agentName>Bob</agentName>\n  <agentAbout>\nAbout Bob\nBob is an AI-driven recommendation engine focused exclusively on distilled spirits. He parses wish lists, interprets patterns, and maps client preferences to a refined selection of beverages. Whether it’s a peat-forward Scotch or a smooth aged rum, Bob delivers suggestions backed by both data and taste.\n  </agentAbout>\n</agent>\n\n<objective>\nAnalyze the beverage names from the wish list, providing a brief description for each, highlighting notable features or interesting facts.  \nIn addition, map each item to its beverage type and category, then suggest similar or complementary options.  \nAlso include a less conventional recommendation that still aligns with the client's preferences and could offer a surprising experience.\n</objective>\n\n<nameProduct>\n{{ $json.body.prod }}\n</nameProduct>\n\n<Output>\n  Object 'description' and 'interestingFacts'\nFor each item, include:\n- a brief **description** highlighting key characteristics, such as type, flavor, and origin;\n- one or more **interesting facts**, which may include historical trivia, production details, or curious information.\n\nSee the example in the '<exOutput>' block.\n</Output>\n\n<exOutput>\n\n  {\n    \"description\": \"A smooth, mild, and flavorful gin.\",\n    \"interestingFacts\": \"Aged for 200 years under a camel's butt.\"\n  },\n  {\n    \"description\": \"A Scottish whisky with woody notes and a smoky finish.\",\n    \"interestingFacts\": \"Produced using spring water from a remote Highland source accessible only by horseback.\"\n  }\n\n</exOutput>"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 1.8,
+      "position": [
+        1200,
+        -660
+      ],
+      "id": "17175ded-b7db-44a7-9a70-7156d07d4aa5",
+      "name": "Bob Agent Tecnico em Descrição sobre o produto",
+      "alwaysOutputData": true
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3,
+      "position": [
+        2120,
+        180
+      ],
+      "id": "cc2fa2ff-3f7e-4c0a-b671-146eabf6fb11",
+      "name": "Pega DB e lista de valores",
+      "alwaysOutputData": true
+    },
+    {
+      "parameters": {
+        "jsCode": "// Loop over input items and add a new field called 'myNewField' to the JSON of each one\n\nvar objFinal = new Object();\nvar spirit = new Array();\nvar list = new Array();\nvar novo = new Array();\n\nvar tableSugestao = \n  \"<table class='table'>\"+\n    \"<thead>\"+\n      \"<th>Spirit</th>\"+\n      \"<th>Motive</th>\"+\n    \"</thead><tbody>\";\n\nvar tableInovation = \n  \"<table class='table'>\"+\n    \"<thead>\"+\n      \"<th>Spirit</th>\"+\n      \"<th>Motive</th>\"+\n    \"</thead><tbody>\";\n  \nfor (const item of $input.all()) {\n  var obj = new Object();\n  \n  if(item.json.sugestao){\n    for (const element of item.json.sugestao) {\n      list.push(element.tipo);\n      tableSugestao += \"<tr><td>\"+element.tipo+\"</td>\";\n      tableSugestao += \"<td>\"+element.motivo+\"</td></tr>\";\n    }\n  }\n\n  if(item.json.novo){\n    for (const element of item.json.novo) {\n      novo.push(element.tipo);\n      tableInovation += \"<tr><td>\"+element.tipo+\"</td>\";\n      tableInovation += \"<td>\"+element.motivo+\"</td></tr>\";\n    }\n  }\n  \n}\n\ntableSugestao += \"</tbody></table>\";\ntableInovation += \"</tbody></table>\";\n  \nvar tableProd = \n  \"<table class='table'>\"+\n    \"<thead>\"+\n      \"<th>img</th>\"+\n      \"<th>name</th>\"+\n      \"<th>spirit</th>\"+\n      \"<th>proof</th>\"+\n      \"<th>fair_price</th>\"+\n      \"<th>about</th>\"+\n    \"</thead><tbody>\";\n\nfor (const item of $input.all()) {\n  var obj = new Object();\n  \n  if(list.includes(item.json.spirit_type) || novo.includes(item.json.spirit_type)){\n    \n    if(item.json.fair_price >= $input.last().json.output.usualRange.split('|')[0] && item.json.fair_price <= $input.last().json.output.usualRange.split('|')[1]){\n      spirit.push(item.json);\n    \n      tableProd += \"<tr><td><img class='img' src='\"+item.json.image_url+\"'></td>\";\n      tableProd += \"<td>\"+item.json.name+\"</td>\";\n      tableProd += \"<td>\"+item.json.spirit_type+\"</td>\";\n      tableProd += \"<td>\"+item.json.proof+\"</td>\";\n      tableProd += \"<td>\"+item.json.fair_price+\"</td>\";\n      tableProd += \"<td><button class='btn btn-info' name='\"+item.json.name+\"' id='askBob' data-bs-toggle='modal' data-bs-target=''#staticBackdrop'>Ask Bob</button></td></tr>\";\n    //list.push(item.json.tipo);\n    }\n  }\n}\ntableProd += \"</tbody></table>\";\n\nobjFinal.table = tableProd;\nobjFinal.sugestao = spirit;\nobjFinal.tipo = tableSugestao;\nobjFinal.novo = tableInovation;\nreturn objFinal;"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2340,
+        180
+      ],
+      "id": "6d89d57f-c26a-4d00-bdc4-9bbc826efb9e",
+      "name": "Seleciona produtos com base no tipo e valor"
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={\n  \"listProduct\" : \"{{ $json.table }}\",\n  \"s1\" : \"{{ $json.tipo }}\",\n  \"s2\" : \"{{ $json.novo }}\"\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [
+        2560,
+        180
+      ],
+      "id": "4109194d-1632-4134-b748-10959b6e53f8",
+      "name": "retorna dados pra Home"
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "bob",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        900,
+        -660
+      ],
+      "id": "28699b25-0391-4bb0-a053-5c5bb7a11946",
+      "name": "POST nome do produto",
+      "webhookId": "e561724e-709d-47a6-9540-a33c974efe80"
+    },
+    {
+      "parameters": {
+        "respondWith": "text",
+        "responseBody": "={\n  \"descProduct\":\"{{ $json.output.description }}\",\n  \"interestingFacts\":\"{{ $json.output.interestingFacts }}\"\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [
+        1620,
+        -660
+      ],
+      "id": "7a7f7880-057c-4373-b268-8f72c19a9c4f",
+      "name": "Retorna descricao sobre o produto"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Groq Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Bob Agent Classifica Tipos (spirits)",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Aggregate": {
+      "main": [
+        [
+          {
+            "node": "Bob Agent Classifica Tipos (spirits)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Structured Output Parser": {
+      "ai_outputParser": [
+        [
+          {
+            "node": "Bob Agent Classifica Tipos (spirits)",
+            "type": "ai_outputParser",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Groq Chat Model1": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Bob Agent Tecnico em Descrição sobre o produto",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Structured Output Parser1": {
+      "ai_outputParser": [
+        [
+          {
+            "node": "Bob Agent Tecnico em Descrição sobre o produto",
+            "type": "ai_outputParser",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Simple Memory": {
+      "ai_memory": [
+        []
+      ]
+    },
+    "Groq Chat Model2": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Bob agent analisador de valores",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Structured Output Parser2": {
+      "ai_outputParser": [
+        [
+          {
+            "node": "Bob agent analisador de valores",
+            "type": "ai_outputParser",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "GET_POST_HOME": {
+      "main": [
+        [
+          {
+            "node": "Home",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "End_Point_Client",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "BD",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Home": {
+      "main": [
+        [
+          {
+            "node": "Return HTML",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "BD": {
+      "main": [
+        [
+          {
+            "node": "Cria lista de Tipos (Spirits)",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Junta os dados de Bob (sugestao) com o DB",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "End_Point_Client": {
+      "main": [
+        [
+          {
+            "node": "cria uma lista de tipos (spirits) do cliente",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Cria lista de Tipos (Spirits)": {
+      "main": [
+        [
+          {
+            "node": "unifica as 2 listas de tipos (DB e Cliente",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "cria uma lista de tipos (spirits) do cliente": {
+      "main": [
+        [
+          {
+            "node": "unifica as 2 listas de tipos (DB e Cliente",
+            "type": "main",
+            "index": 1
+          },
+          {
+            "node": "Bob agent analisador de valores",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "unifica as 2 listas de tipos (DB e Cliente": {
+      "main": [
+        [
+          {
+            "node": "Aggregate",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Bob Agent Classifica Tipos (spirits)": {
+      "main": [
+        [
+          {
+            "node": "Cria Lista de Sugestoes",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Cria Lista de Sugestoes": {
+      "main": [
+        [
+          {
+            "node": "Junta os dados de Bob (sugestao) com o DB",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Junta os dados de Bob (sugestao) com o DB": {
+      "main": [
+        [
+          {
+            "node": "Pega DB e lista de valores",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Bob agent analisador de valores": {
+      "main": [
+        [
+          {
+            "node": "Pega DB e lista de valores",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Bob Agent Tecnico em Descrição sobre o produto": {
+      "main": [
+        [
+          {
+            "node": "Retorna descricao sobre o produto",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Pega DB e lista de valores": {
+      "main": [
+        [
+          {
+            "node": "Seleciona produtos com base no tipo e valor",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Seleciona produtos com base no tipo e valor": {
+      "main": [
+        [
+          {
+            "node": "retorna dados pra Home",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "POST nome do produto": {
+      "main": [
+        [
+          {
+            "node": "Bob Agent Tecnico em Descrição sobre o produto",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "670b0180-173f-44ad-b056-f931dea232d7",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "d2fe3f12fcd05f19585a5c1a57afa13e28600785c2e4f84d3738ffa796d6be6d"
+  },
+  "id": "xi2G6UXNT18zVpUn",
+  "tags": []
+}

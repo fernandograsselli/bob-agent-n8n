@@ -1,25 +1,32 @@
+
+---
+
+### 🇺🇸 English Version
+
+```markdown
 # 🥃 Bob - The Spirit Guide (n8n Agent)
 
-Bob é um agente de IA criado para analisar a "bar" de um usuário no ecossistema BAXUS e recomendar bebidas personalizadas com base nos seus gostos, preferências e histórico de preços. Ele foi implementado usando [n8n](https://n8n.io/) e roda via Docker.
+Bob is an AI agent designed to analyze a user's "bar" within the BAXUS ecosystem and recommend personalized spirits based on their tastes, preferences, and pricing history. It was built using [n8n](https://n8n.io/) and runs via Docker.
 
-## 🚀 Como rodar o projeto localmente
+## 🚀 How to Run the Project Locally
 
-### Pré-requisitos
+### Prerequisites
 
-- Docker instalado ([instruções](https://docs.docker.com/get-docker/))
+- Docker installed ([instructions](https://docs.docker.com/get-docker/))
 
-### Passo a passo
+- Before running the project, you’ll need two API keys to ensure proper communication with external services:
+
+1. **Google Sheets API Key**: To access and manage your collection data. Get your key from the [Google Cloud Console](https://console.cloud.google.com/)
+2. **Groq API Key**: To access the freely available AI models. Create your account and generate your key at [groq.com](https://groq.com/)
+
+### Step-by-step
 
 ```bash
-# Clone este repositório
-git clone https://github.com/seu-usuario/bob-n8n.git
+# Clone this repository
+git clone https://github.com/your-username/bob-n8n.git
 
-# Acesse a pasta
+# Enter the project folder
 cd bob-n8n
 
-# Suba o container com o n8n e o workflow do Bob
+# Start the container with n8n and Bob’s workflow
 docker compose up -d
-
-
-# Acesse o n8n no seu navegador:
-http://localhost:5678
